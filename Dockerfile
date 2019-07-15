@@ -37,8 +37,10 @@ RUN  R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 #run it again ... use for conf for service ... when run the first time ...
 RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
-RUN chmod +x /etc/my_init.d/startup.sh
+
 RUN dos2unix /etc/my_init.d/startup.sh
+RUN chmod +x /etc/my_init.d/startup.sh
+
 
 ##Adding daemons to containers
 RUN mkdir /etc/service/shiny-server /var/log/shiny-server ; sync 
