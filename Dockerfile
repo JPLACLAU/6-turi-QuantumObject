@@ -39,8 +39,9 @@ RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
 
 RUN dos2unix /etc/my_init.d/startup.sh
-RUN dos2unix /etc/my_init.d/
+RUN dos2unix /etc/my_init.d
 RUN dos2unix /sbin/my_init
+RUN dos2unix /etc/my_init.d/startup.sh
 RUN chmod +x /etc/my_init.d/startup.sh
 
 
