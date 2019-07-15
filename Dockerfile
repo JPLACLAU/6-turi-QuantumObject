@@ -38,11 +38,15 @@ RUN  R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
 
+RUN chmod +x /etc/my_init.d/startup.sh
 RUN dos2unix /etc/my_init.d/startup.sh
 RUN dos2unix /etc/my_init.d
 RUN dos2unix /sbin/my_init
-RUN dos2unix /etc/my_init.d/startup.sh
-RUN chmod +x /etc/my_init.d/startup.sh
+
+RUN sed -i -e 's/\r$//' startup.sh
+RUN sed -i -e 's/\r$//' /etc/my_init.d/startup.sh
+
+
 
 
 ##Adding daemons to containers
