@@ -39,6 +39,8 @@ RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
 
 RUN dos2unix /etc/my_init.d/startup.sh
+RUN dos2unix /etc/my_init.d/
+RUN dos2unix /sbin/my_init
 RUN chmod +x /etc/my_init.d/startup.sh
 
 
@@ -58,4 +60,4 @@ VOLUME /srv/shiny-server
 EXPOSE 3838
 
 # Use baseimage-docker's init system.
-# CMD ["/sbin/my_init"]
+CMD ["/sbin/my_init"]
