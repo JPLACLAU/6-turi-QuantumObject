@@ -10,6 +10,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q r-bas
                     gdebi-core \  
                     libapparmor1 \
                     sudo \
+                    dos2unix \
                     libssl1.0.0 \
                     libcurl4-openssl-dev \
                     && apt-get clean \
@@ -27,12 +28,17 @@ RUN R -e "install.packages('shiny', repos='http://cran.rstudio.com/')" \
           
 RUN  R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 
+#windows to unix file problem !/bin/bash
+#RUN apt-get install dos2unix
+
+
 ##startup scripts  
 #Pre-config scrip that may be needed to be run one time only when the container run the first time .. using a flag to don't 
 #run it again ... use for conf for service ... when run the first time ...
 RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
 RUN chmod +x /etc/my_init.d/startup.sh
+RUN dos2unix /etc/my_init.d/startup.sh
 
 ##Adding daemons to containers
 RUN mkdir /etc/service/shiny-server /var/log/shiny-server ; sync 
