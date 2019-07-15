@@ -48,7 +48,8 @@ RUN sed -i -e 's/\r$//' /etc/my_init.d/startup.sh
 
 
 ##Adding daemons to containers
-RUN mkdir /etc/service/shiny-server /var/log/shiny-server ; sync 
+RUN mkdir /etc/service/shiny-server 
+#/var/log/shiny-server ; sync 
 COPY shiny-server.sh /etc/service/shiny-server/run
 RUN chmod +x /etc/service/shiny-server/run  \
     && cp /var/log/cron/config /var/log/shiny-server/ \
