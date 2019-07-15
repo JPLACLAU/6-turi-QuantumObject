@@ -58,4 +58,4 @@ VOLUME /srv/shiny-server
 EXPOSE 3838
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+# CMD ["/sbin/my_init"]
